@@ -91,19 +91,31 @@ https://github.com/JupiterOne/sdk/blob/master/docs/integrations/development.md
 
 The following entities are created:
 
-| Resources | Entity `_type` | Entity `_class` |
-| --------- | -------------- | --------------- |
-| Account   | `acme_account` | `Account`       |
+| Resources             | Entity `_type`          | Entity `_class` |
+| --------------------- | ----------------------- | --------------- |
+| Kubernetes Cluster    | `kubernetes_cluster`    | `Cluster`       |
+| Kubernetes Container  | `kubernetes_container`  | `Container`     |
+| Kubernetes Deployment | `kubernetes_deployment` | `Configuration` |
+| Kubernetes Namespace  | `kubernetes_namespace`  | `Group`         |
+| Kubernetes Node       | `kubernetes_node`       | `Group`         |
+| Kubernetes Pod        | `kubernetes_pod`        | `Group`         |
+| Kubernetes ReplicaSet | `kubernetes_replicaset` | `Configuration` |
+| Kubernetes Service    | `kubernetes_service`    | `Service`       |
 
 ### Relationships
 
 The following relationships are created/mapped:
 
-| Source Entity `_type` | Relationship `_class` | Target Entity `_type` |
-| --------------------- | --------------------- | --------------------- |
-| `acme_account`        | **HAS**               | `acme_group`          |
-| `acme_account`        | **HAS**               | `acme_user`           |
-| `acme_group`          | **HAS**               | `acme_user`           |
+| Source Entity `_type`   | Relationship `_class` | Target Entity `_type`   |
+| ----------------------- | --------------------- | ----------------------- |
+| `kubernetes_cluster`    | **HAS**               | `kubernetes_node`       |
+| `kubernetes_deployment` | **HAS**               | `kubernetes_replicaset` |
+| `kubernetes_namespace`  | **HAS**               | `kubernetes_deployment` |
+| `kubernetes_namespace`  | **HAS**               | `kubernetes_node`       |
+| `kubernetes_namespace`  | **HAS**               | `kubernetes_service`    |
+| `kubernetes_node`       | **HAS**               | `kubernetes_pod`        |
+| `kubernetes_pod`        | **HAS**               | `kubernetes_container`  |
+| `kubernetes_replicaset` | **HAS**               | `kubernetes_pod`        |
 
 <!--
 ********************************************************************************
