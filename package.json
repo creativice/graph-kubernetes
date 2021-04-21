@@ -1,7 +1,7 @@
 {
-  "name": "@jupiterone/integration-template",
+  "name": "@jupiterone/graph-kubernetes",
   "version": "0.0.0",
-  "description": "A JupiterOne Integration",
+  "description": "A JupiterOne Integration for Kubernetes native",
   "license": "MPL-2.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,15 +22,16 @@
     "test:ci": "yarn lint && yarn type-check && yarn test",
     "build": "tsc -p tsconfig.dist.json --declaration",
     "prepush": "yarn lint && yarn type-check && jest --changedSince master",
-    "prepack": "yarn build"
+    "prepack": "yarn build",
+    "tf": "cd terraform && env `grep -v '^#' .env` terraform $1"
   },
   "peerDependencies": {
-    "@jupiterone/integration-sdk-core": "^5.11.0"
+    "@jupiterone/integration-sdk-core": "^6.0.0"
   },
   "devDependencies": {
-    "@jupiterone/integration-sdk-core": "^5.11.0",
-    "@jupiterone/integration-sdk-dev-tools": "^5.11.0",
-    "@jupiterone/integration-sdk-testing": "^5.11.0"
+    "@jupiterone/integration-sdk-core": "^6.0.0",
+    "@jupiterone/integration-sdk-dev-tools": "^6.0.0",
+    "@jupiterone/integration-sdk-testing": "^6.0.0"
   },
   "dependencies": {
     "@kubernetes/client-node": "^0.14.3"
